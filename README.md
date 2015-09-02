@@ -1,9 +1,9 @@
 
-# Cocktail
+# Cocktail (WIP)
 ## Cocktail recipe browser and screensaver for Kodi
 
 This addon let you browse dozens of cocktail recipes.
-It also includes a screensaver to display random drinks.
+It also includes an interactive screensaver to display random drinks, switch drinks and search specific recipes.
 
 Powered by http://www.thecocktaildb.com/
 
