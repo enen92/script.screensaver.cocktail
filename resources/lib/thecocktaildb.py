@@ -22,6 +22,7 @@ import urllib
 import urllib2
 
 API_BASE_URL = 'http://www.thecocktaildb.com/api/json/v1'
+API_INGREDIENT_URL = 'http://www.thecocktaildb.com/images/ingredients/'
 
 
 class Api:
@@ -62,6 +63,96 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail(dict_))
 				return cocktails
+				
+	class List:
+		
+		def alcoholic(self):
+			return_list = []
+			url = '%s/%s/list.php?a=list' % (API_BASE_URL,APIKEY)
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for item in data:
+					if item["strAlcoholic"]: return_list.append(item["strAlcoholic"])
+			return return_list
+		
+		def glass(self):
+			return_list = []
+			url = '%s/%s/list.php?g=list' % (API_BASE_URL,APIKEY)
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for item in data:
+					if item["strGlass"]: return_list.append(item["strGlass"])
+			return return_list
+			
+		def category(self):
+			return_list = []
+			url = '%s/%s/list.php?c=list' % (API_BASE_URL,APIKEY)
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for item in data:
+					if item["strCategory"]: return_list.append(item["strCategory"])
+			return return_list
+			
+		def ingredient(self):
+			return_list = []
+			url = '%s/%s/list.php?i=list' % (API_BASE_URL,APIKEY)
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for item in data:
+					if item["strIngredient1"]: return_list.append(item["strIngredient1"])
+			return return_list
+			
+	class Filter:
+		
+		def glass(self,glass):
+			cocktails = []
+			url = '%s/%s/filter.php?g=%s' % (API_BASE_URL,APIKEY,glass.replace(' ','_'))
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail_lite(dict_))
+			return cocktails
+			
+		def category(self,category):
+			cocktails = []
+			url = '%s/%s/filter.php?c=%s' % (API_BASE_URL,APIKEY,category.replace(' ','_'))
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail_lite(dict_))
+			return cocktails
+			
+		def alcohol(self,alcool):
+			cocktails = []
+			url = '%s/%s/filter.php?a=%s' % (API_BASE_URL,APIKEY,alcool.replace(' ','_'))
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail_lite(dict_))
+			return cocktails
+			
+		def ingredient(self,ingredient):
+			cocktails = []
+			url = '%s/%s/filter.php?i=%s' % (API_BASE_URL,APIKEY,ingredient.replace(' ','_'))
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail_lite(dict_))
+			return cocktails
+			
+	class Lookup:
+		
+		def cocktail(self,cocktail_id):
+			cocktails = []
+			url = '%s/%s/lookup.php?i=%s' % (API_BASE_URL,APIKEY,str(cocktail_id))
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail(dict_))
+			return cocktails
+			
+					
+			
 					
 class Cocktail:
 
@@ -103,6 +194,13 @@ class Cocktail:
 		self.measure13 = cocktail_dict["strMeasure13"]
 		self.measure14 = cocktail_dict["strMeasure14"]
 		self.measure15 = cocktail_dict["strMeasure15"]
+		
+class Cocktail_lite:
+
+	def __init__(self,cocktail_dict):
+		self.id = cocktail_dict["idDrink"]
+		self.name = cocktail_dict["strDrink"]
+		self.thumb = cocktail_dict["strDrinkThumb"]
 		
 		
 		

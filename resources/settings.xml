@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="Program">
-		<setting id="quioske-mode" type="bool" label="Enable quioske mode (avoid random when clicking left/right)" default="false" />
-		<setting id="ingredient-switch" type="enum" label="Ingredient switch speed (in case > 6 ingredients)" values="Slow|Fast" default="0" />
+	<category label="32015">
+		<setting id="ingredient-switch" type="enum" label="32016" values="Slow|Fast" default="0" />
+		<setting id="youtube-max-results" label="32017" type="slider" default="6" range="6,3,50" option="int" />
 	</category>
-	<category label="Screensaver">
-		<setting id="enable-instructions" type="bool" label="Enable instructions" default="true" />
-		<setting id="wait-time-instructions" type="number" label="Wait time before picking the first random (seconds)" default="2" enable="eq(-1,true)"/>
-		<setting id="next-time" label="Time to get next random drink (seconds) " type="slider" default="60" range="40,20,600" option="int" />
+	<category label="32018">
+		<setting id="enable-instructions" type="bool" label="32019" default="true" />
+		<setting id="wait-time-instructions" type="number" label="32020" default="2" enable="eq(-1,true)"/>
+		<setting id="next-time" label="32021 " type="slider" default="60" range="40,20,600" option="int" />
 	</category>
 </settings>

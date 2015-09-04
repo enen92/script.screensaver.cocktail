@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window type="window">
+	<defaultcontrol always="false">32500</defaultcontrol>
     <controls>
 
-        <control type="image" id="30001">
+        <control type="image">
             <description>Background image</description>
             <posx>0</posx>
             <posy>0</posy>
@@ -13,51 +14,17 @@
             <texture>fanart.jpg</texture>
         </control>
 
-        <control type="image" id="30002">
+        <control type="image">
             <description>image</description>
-            <posx>40</posx>
-            <posy>60</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <posx>10</posx>
+            <posy>20</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="top">keep</aspectratio>
             <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>500</width>
-            <height>762</height>
-            <texture></texture>
+            <width>300</width>
+            <texture>logo.png</texture>
         </control>       
 
-
-        <control type="label" id="30003">
-            <description>Headline</description>
-            <posx>0</posx>
-            <posy>20</posy>
-            <width>1280</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <scroll>true</scroll>
-            <label></label>
-            <font>font30_title</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>ff000000</shadowcolor>
-            <wrapmultiline>true</wrapmultiline>
-            <scrollspeed>50</scrollspeed>
-            <scrollsuffix> - </scrollsuffix>
-        </control>
-        <control type="textbox" id="30004">
-            <description>Drink type</description>
-            <posx>0</posx>
-            <posy>65</posy>
-            <width>1280</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-
-        <control type="textbox" id="30005">
+        <control type="textbox">
             <description>Clock</description>
             <posx>840</posx>
             <posy>20</posy>
@@ -71,299 +38,177 @@
             <shadowcolor>88000000</shadowcolor>
             <label>$INFO[System.Time]</label>
         </control>
+        
+	<!-- Main menu / Categories -->
 
-
-	<control type="textbox" id="30006">
-         <description>Content</description>
-         <posx>20</posx>
-         <posy>100</posy>
-         <width>1260</width>
-         <height>620</height>
-         <visible>true</visible>
-         <aligny>top</aligny>
-         <colordiffuse>FFFFFFFF</colordiffuse>
-         <font>font16</font>
-         <textcolor>FFFFFFFF</textcolor>
-         <shadowcolor>66000000</shadowcolor>
-         <autoscroll delay="15000" time="1500" repeat="10000"></autoscroll>
-         <label></label>
+	<control type="group">
+	
+		<control type="panel" id="32500">
+			<posx>30</posx>
+			<posy>80</posy>
+			<width>1200</width>
+			<height>700</height>
+			<scrolltime>300</scrolltime>
+			<orientation>vertical</orientation>
+			<preloaditems>2</preloaditems>
+			<itemlayout height="300" width="380">
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>373</width>
+					<height>260</height>
+					<texture border="40">buttons/roundedbutton-nofocus.png</texture>
+				</control>
+				<control type="group">
+					<posx>77</posx>
+					<posy>18</posy>
+					<control type="image">
+						<posy>10</posy>
+						<width>320</width>
+						<height>200</height>
+						<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Thumb]</texture>
+						<aspectratio aligny="center">scale</aspectratio>
+						<fadetime>0</fadetime>
+					</control>
+					<control type="textbox">
+						<width>323</width>
+						<height>100</height>
+						<posx>0</posx>
+						<posy>227</posy>
+						<align>center</align>
+						<font>font12</font>
+						<textcolor>FFF0F0F0</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</control>
+			</itemlayout>
+			<focusedlayout height="300" width="380">
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>373</width>
+					<height>260</height>
+					<texture border="40">buttons/roundedbutton-nofocus.png</texture>
+				</control>
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>373</width>
+					<animation effect="fade" start="0" end="100" time="160">Focus</animation>
+					<animation effect="fade" start="0" end="100" time="0">UnFocus</animation>
+					<height>260</height>
+					<texture border="40" colordiffuse="$INFO[Window(home).Property(ImageColor)]">buttons/roundedbutton-focus.png</texture>
+				</control>
+				<control type="group">
+					<posx>77</posx>
+					<posy>18</posy>
+					<control type="image">
+						<posy>10</posy>
+						<width>320</width>
+						<height>200</height>
+						<texture background="true" fallback="DefaultVideo.png">$INFO[ListItem.Thumb]</texture>
+						<aspectratio aligny="center">scale</aspectratio>
+						<fadetime>0</fadetime>
+					</control>
+					<control type="textbox">
+						<width>323</width>
+						<height>100</height>
+						<posx>0</posx>
+						<posy>227</posy>
+						<align>center</align>
+						<font>font12</font>
+						<textcolor>FFF0F0F0</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</control>
+			</focusedlayout>
+		</control>
 	</control>
-        
-        <control type="image" id="30007">
-            <description>ingredient 1 image</description>
-            <posx>610</posx>
-            <posy>200</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30008">
-            <description>ingredient 1 name</description>
-            <posx>610</posx>
-            <posy>345</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30009">
-            <description>ingredient 1 quantity</description>
-            <posx>610</posx>
-            <posy>395</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="image" id="30010">
-            <description>ingredient 2 image</description>
-            <posx>830</posx>
-            <posy>200</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30011">
-            <description>ingredient 2 name</description>
-            <posx>830</posx>
-            <posy>345</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30012">
-            <description>ingredient 2 quantity</description>
-            <posx>830</posx>
-            <posy>395</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="image" id="30013">
-            <description>ingredient 3 image</description>
-            <posx>1050</posx>
-            <posy>200</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30014">
-            <description>ingredient 3 name</description>
-            <posx>1050</posx>
-            <posy>345</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30015">
-            <description>ingredient 3 quantity</description>
-            <posx>1050</posx>
-            <posy>395</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="image" id="30016">
-            <description>ingredient 4 image</description>
-            <posx>610</posx>
-            <posy>440</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30017">
-            <description>ingredient 4 name</description>
-            <posx>610</posx>
-            <posy>585</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30018">
-            <description>ingredient 4 quantity</description>
-            <posx>610</posx>
-            <posy>635</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="image" id="30019">
-            <description>ingredient 5 image</description>
-            <posx>830</posx>
-            <posy>440</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30020">
-            <description>ingredient 5 name</description>
-            <posx>830</posx>
-            <posy>585</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30021">
-            <description>ingredient 5 quantity</description>
-            <posx>830</posx>
-            <posy>635</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="image" id="30022">
-            <description>ingredient 6 image</description>
-            <posx>1050</posx>
-            <posy>440</posy>
-            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <width>150</width>
-            <height>150</height>
-            <texture></texture>
-        </control>
-        <control type="textbox" id="30023">
-            <description>ingredient 6 name</description>
-            <posx>1050</posx>
-            <posy>585</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font14</font>
-            <textcolor>orangered</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        <control type="textbox" id="30024">
-            <description>ingredient 6 quantity</description>
-            <posx>1050</posx>
-            <posy>635</posy>
-            <width>150</width>
-            <visible>true</visible>
-            <align>center</align>
-            <aligny>top</aligny>
-            <colordiffuse>FFFFFFFF</colordiffuse>
-            <font>font11</font>
-            <textcolor>88FFFFFF</textcolor>
-            <shadowcolor>88000000</shadowcolor>
-            <label></label>
-        </control>
-        
-        <control type="group">
-		   <control type="image" id="30025">
-				<description>Busy animation</description>
-				<posx>40</posx>
-				<posy>685</posy>
-				<width>30</width>
-				<height>30</height>
-				<texture>busy.png</texture>
-				<aspectratio>keep</aspectratio>
-				<animation effect="rotate" start="0" end="360" center="55,700" time="1200" loop="true" condition="true">conditional</animation>
-				<visible>!IsEmpty(Window(home).Property(loading))</visible>
-			</control>
-		
-			<control type="label" id="30026">
-				<top>655</top>
-				<left>90</left>
-				<width>100</width>
-				<height>90</height>
-				<font>font11</font>
-				<textcolor>88FFFFFF</textcolor>
-				<aligny>center</aligny>
-				<align>left</align>
-				<label>Loading...</label>
-				<visible>!IsEmpty(Window(home).Property(loading))</visible>
-			</control>
+	
+	<!-- Ingredients / Drinks listing -->
+
+	<control type="group">
+	
+		<control type="panel" id="32501">
+			<posx>15</posx>
+			<posy>80</posy>
+			<width>1200</width>
+			<height>700</height>
+			<scrolltime>300</scrolltime>
+			<orientation>vertical</orientation>
+			<preloaditems>2</preloaditems>
+			<itemlayout height="300" width="300">
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>260</width>
+					<height>260</height>
+					<texture border="40">buttons/roundedbutton-nofocus.png</texture>
+				</control>
+				<control type="group">
+					<posx>77</posx>
+					<posy>18</posy>
+					<control type="image">
+						<posy>10</posy>
+						<width>200</width>
+						<height>200</height>
+						<texture background="true" fallback="menuicons/notavailable.png">$INFO[ListItem.Thumb]</texture>
+						<aspectratio aligny="center">scale</aspectratio>
+						<fadetime>0</fadetime>
+					</control>
+					<control type="textbox">
+						<width>200</width>
+						<height>100</height>
+						<posx>0</posx>
+						<posy>227</posy>
+						<align>center</align>
+						<font>font12</font>
+						<textcolor>FFF0F0F0</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</control>
+			</itemlayout>
+			<focusedlayout height="300" width="300">
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>260</width>
+					<height>260</height>
+					<texture border="40">buttons/roundedbutton-nofocus.png</texture>
+				</control>
+				<control type="image">
+					<posy>0</posy>
+					<posx>50</posx>
+					<width>260</width>
+					<animation effect="fade" start="0" end="100" time="160">Focus</animation>
+					<animation effect="fade" start="0" end="100" time="0">UnFocus</animation>
+					<height>260</height>
+					<texture border="40" colordiffuse="$INFO[Window(home).Property(ImageColor)]">buttons/roundedbutton-focus.png</texture>
+				</control>
+				<control type="group">
+					<posx>77</posx>
+					<posy>18</posy>
+					<control type="image">
+						<posy>10</posy>
+						<width>200</width>
+						<height>200</height>
+						<texture background="true" fallback="menuicons/notavailable.png">$INFO[ListItem.Thumb]</texture>
+						<aspectratio aligny="center">scale</aspectratio>
+						<fadetime>0</fadetime>
+					</control>
+					<control type="textbox">
+						<width>200</width>
+						<height>100</height>
+						<posx>0</posx>
+						<posy>227</posy>
+						<align>center</align>
+						<font>font12</font>
+						<textcolor>FFF0F0F0</textcolor>
+						<info>ListItem.Label</info>
+					</control>
+				</control>
+			</focusedlayout>
 		</control>
-		
-		<control type="textbox" id="30027">
-			<description>Instructions</description>
-			<posx>20</posx>
-			<posy>360</posy>
-			<width>1260</width>
-			<height>620</height>
-			<visible>true</visible>
-			<align>center</align>
-			<aligny>top</aligny>
-			<colordiffuse>FFFFFFFF</colordiffuse>
-			<font>font16</font>
-			<textcolor>FFFFFFFF</textcolor>
-			<shadowcolor>66000000</shadowcolor>
-			<autoscroll delay="15000" time="1500" repeat="10000"></autoscroll>
-			<label>Press the context menu key to search for cocktails.[CR]Press left or right to get random drinks.[CR] Enjoy your drink!</label>
-			<visible>!IsEmpty(Window(home).Property(instructions))</visible>
-		</control>
-
-
-
-    </controls>
+	</control>
+   </controls>
 </window>

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.screensaver.cocktail" name="Cocktail" version="0.0.1" provider-name="enen92,zag">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-    </requires>
-    <extension point="xbmc.ui.screensaver" library="cocktail.py" />
-	<extension point="xbmc.python.script" library="cocktail.py" />
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <language/>
-        <website>http://www.thecocktaildb.com/</website>
-        <source></source>
-        <forum></forum>
-        <email></email>
-        <summary lang="en">Cocktail recipe browser and screensaver for Kodi</summary>
-        <description lang="en">This addon let you browse dozens of cocktail recipes. It also includes a screensaver to display random drinks. [CR] Powered by http://www.thecocktaildb.com/</description>
+<addon id="script.screensaver.cocktail" name="Cocktail" version="0.0.2" provider-name="enen92,Zag">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.ui.screensaver" library="cocktail.py" />
+	<extension point="xbmc.python.script" library="interface.py" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<website>http://www.thecocktaildb.com/</website>
+		<source>https://github.com/enen92/script.screensaver.cocktail</source>
+		<forum>http://forum.kodi.tv/showthread.php?tid=235298</forum>
+		<email></email>
+		<summary lang="en">Cocktail recipe browser and screensaver for Kodi</summary>
+		<description lang="en">This addon let you browse dozens of cocktail recipes. It also includes a screensaver to display random drinks. [CR][CR]Powered by http://www.thecocktaildb.com</description>
     </extension>
 </addon>

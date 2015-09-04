@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window type="window">
+    <controls>
+
+        <control type="image" id="32601">
+            <description>Background image</description>
+            <posx>0</posx>
+            <posy>0</posy>
+            <colordiffuse>FF555555</colordiffuse>
+            <aspectratio scalediffuse="false" align="center" aligny="center">scale</aspectratio>
+            <width>1280</width>
+            <height>720</height>
+            <texture>fanart.jpg</texture>
+        </control>
+
+        <control type="image" id="32602">
+            <description>image</description>
+            <posx>40</posx>
+            <posy>60</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>500</width>
+            <height>762</height>
+            <texture></texture>
+        </control>       
+
+
+        <control type="label" id="32603">
+            <description>Headline</description>
+            <posx>0</posx>
+            <posy>20</posy>
+            <width>1280</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <scroll>true</scroll>
+            <label></label>
+            <font>font30_title</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>ff000000</shadowcolor>
+            <wrapmultiline>true</wrapmultiline>
+            <scrollspeed>50</scrollspeed>
+            <scrollsuffix> - </scrollsuffix>
+        </control>
+        <control type="textbox" id="32604">
+            <description>Drink type</description>
+            <posx>0</posx>
+            <posy>65</posy>
+            <width>1280</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+
+        <control type="textbox" id="32605">
+            <description>Clock</description>
+            <posx>840</posx>
+            <posy>20</posy>
+            <width>420</width>
+            <visible>true</visible>
+            <align>right</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label>$INFO[System.Time]</label>
+        </control>
+
+
+	<control type="textbox" id="32606">
+         <description>Recipe</description>
+         <posx>20</posx>
+         <posy>95</posy>
+         <width>1260</width>
+         <height>90</height>
+         <visible>true</visible>
+         <aligny>top</aligny>
+         <colordiffuse>FFFFFFFF</colordiffuse>
+         <font>font16</font>
+         <textcolor>FFFFFFFF</textcolor>
+         <shadowcolor>66000000</shadowcolor>
+         <autoscroll delay="10000" time="1500" repeat="10000"></autoscroll>
+         <label></label>
+	</control>
+        
+        <control type="image" id="32607">
+            <description>ingredient 1 image</description>
+            <posx>610</posx>
+            <posy>200</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32608">
+            <description>ingredient 1 name</description>
+            <posx>610</posx>
+            <posy>345</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32609">
+            <description>ingredient 1 quantity</description>
+            <posx>610</posx>
+            <posy>395</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="image" id="32610">
+            <description>ingredient 2 image</description>
+            <posx>830</posx>
+            <posy>200</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32611">
+            <description>ingredient 2 name</description>
+            <posx>830</posx>
+            <posy>345</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32612">
+            <description>ingredient 2 quantity</description>
+            <posx>830</posx>
+            <posy>395</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="image" id="32613">
+            <description>ingredient 3 image</description>
+            <posx>1050</posx>
+            <posy>200</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32614">
+            <description>ingredient 3 name</description>
+            <posx>1050</posx>
+            <posy>345</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32615">
+            <description>ingredient 3 quantity</description>
+            <posx>1050</posx>
+            <posy>395</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="image" id="32616">
+            <description>ingredient 4 image</description>
+            <posx>610</posx>
+            <posy>440</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32617">
+            <description>ingredient 4 name</description>
+            <posx>610</posx>
+            <posy>585</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32618">
+            <description>ingredient 4 quantity</description>
+            <posx>610</posx>
+            <posy>635</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="image" id="32619">
+            <description>ingredient 5 image</description>
+            <posx>830</posx>
+            <posy>440</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32620">
+            <description>ingredient 5 name</description>
+            <posx>830</posx>
+            <posy>585</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32621">
+            <description>ingredient 5 quantity</description>
+            <posx>830</posx>
+            <posy>635</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="image" id="32622">
+            <description>ingredient 6 image</description>
+            <posx>1050</posx>
+            <posy>440</posy>
+            <aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <width>150</width>
+            <height>150</height>
+            <texture></texture>
+        </control>
+        <control type="textbox" id="32623">
+            <description>ingredient 6 name</description>
+            <posx>1050</posx>
+            <posy>585</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font14</font>
+            <textcolor>orangered</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        <control type="textbox" id="32624">
+            <description>ingredient 6 quantity</description>
+            <posx>1050</posx>
+            <posy>635</posy>
+            <width>150</width>
+            <visible>true</visible>
+            <align>center</align>
+            <aligny>top</aligny>
+            <colordiffuse>FFFFFFFF</colordiffuse>
+            <font>font11</font>
+            <textcolor>88FFFFFF</textcolor>
+            <shadowcolor>88000000</shadowcolor>
+            <label></label>
+        </control>
+        
+        <control type="group">
+		   <control type="image" id="32625">
+				<description>Busy animation</description>
+				<posx>40</posx>
+				<posy>685</posy>
+				<width>30</width>
+				<height>30</height>
+				<texture>busy.png</texture>
+				<aspectratio>keep</aspectratio>
+				<animation effect="rotate" start="0" end="360" center="55,700" time="1200" loop="true" condition="true">conditional</animation>
+				<visible>!IsEmpty(Window(home).Property(loading))</visible>
+			</control>
+		
+			<control type="label" id="32626">
+				<top>655</top>
+				<left>90</left>
+				<width>100</width>
+				<height>90</height>
+				<font>font11</font>
+				<textcolor>88FFFFFF</textcolor>
+				<aligny>center</aligny>
+				<align>left</align>
+				<label>Loading...</label>
+				<visible>!IsEmpty(Window(home).Property(loading))</visible>
+			</control>
+		</control>
+		
+		<control type="textbox" id="32627">
+			<description>Instructions</description>
+			<posx>20</posx>
+			<posy>360</posy>
+			<width>1260</width>
+			<height>620</height>
+			<visible>true</visible>
+			<align>center</align>
+			<aligny>top</aligny>
+			<colordiffuse>FFFFFFFF</colordiffuse>
+			<font>font16</font>
+			<textcolor>FFFFFFFF</textcolor>
+			<shadowcolor>66000000</shadowcolor>
+			<autoscroll delay="15000" time="1500" repeat="10000"></autoscroll>
+			<label>$ADDON[script.screensaver.cocktail 32014]</label>
+			<visible>!IsEmpty(Window(home).Property(instructions))</visible>
+		</control>
+
+
+
+    </controls>
+</window>
