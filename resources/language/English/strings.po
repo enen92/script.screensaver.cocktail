@@ -103,3 +103,31 @@ msgstr ""
 msgctxt "#32021"
 msgid "Time to get next random drink (seconds)"
 msgstr ""
+
+msgctxt "#32022"
+msgid "Added to favourites!"
+msgstr ""
+
+msgctxt "#32023"
+msgid "Removed from favourites!"
+msgstr ""
+
+msgctxt "#32024"
+msgid "Could not find drink in favourites!"
+msgstr ""
+
+msgctxt "#32025"
+msgid "Favourites"
+msgstr ""
+
+msgctxt "#32026"
+msgid "You do not have any favourite drinks!"
+msgstr ""
+
+msgctxt "#32027"
+msgid "Add to favourites"
+msgstr ""
+
+msgctxt "#32028"
+msgid "Remove from favourites"
+msgstr ""

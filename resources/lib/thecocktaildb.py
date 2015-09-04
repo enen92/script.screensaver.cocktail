@@ -54,15 +54,6 @@ class Api:
 					for dict_ in data:
 						cocktails.append(Cocktail(dict_))
 					return cocktails
-		
-		def random(self):
-			cocktails = []
-			url = '%s/%s/random.php' % (API_BASE_URL,APIKEY)
-			data = json.load(urllib2.urlopen(url))["drinks"]
-			if data:
-				for dict_ in data:
-					cocktails.append(Cocktail(dict_))
-				return cocktails
 				
 	class List:
 		
@@ -150,6 +141,15 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail(dict_))
 			return cocktails
+			
+		def random(self):
+			cocktails = []
+			url = '%s/%s/random.php' % (API_BASE_URL,APIKEY)
+			data = json.load(urllib2.urlopen(url))["drinks"]
+			if data:
+				for dict_ in data:
+					cocktails.append(Cocktail(dict_))
+				return cocktails
 			
 					
 			

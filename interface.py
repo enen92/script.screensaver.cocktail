@@ -26,10 +26,11 @@ import urllib
 import cocktail as cocktailscreensaver
 from resources.lib import thecocktaildb
 from resources.lib import youtube
+from resources.lib import favourites
 from resources.lib.common_cocktail import *
 
-contextmenu_labels_drink = [translate(32001),translate(32002)]
-contextmenu_options_drink = ['recipe','youtube']
+contextmenu_labels_drink_original = [translate(32001),translate(32002)]
+contextmenu_options_drink_original = ['recipe','youtube']
 
 INGREDIENT_DRINK_PANEL_CONTROL = 32501
 REGULAR_PANEL_CONTROL = 32500
@@ -56,7 +57,7 @@ class Main(xbmcgui.WindowXML):
 		self.last_focused_drink = 0
 		self.last_focused_ingredient = 0
 		items = []
-		menu_items = [(translate(32003),'categories',os.path.join(addon_path,"resources","skins","default","media","menuicons","categories.png")),(translate(32004),'glass',os.path.join(addon_path,"resources","skins","default","media","menuicons","glass.png")),(translate(32005),'alcohol',os.path.join(addon_path,"resources","skins","default","media","menuicons","alcohol.png")),(translate(32006),'ingredient',os.path.join(addon_path,"resources","skins","default","media","menuicons","ingredient.png")),(translate(32007),'search',os.path.join(addon_path,"resources","skins","default","media","menuicons","search.png")),(translate(32008),'screensaver',os.path.join(addon_path,"resources","skins","default","media","menuicons","screensaver.png"))]
+		menu_items = [(translate(32003),'categories',os.path.join(addon_path,"resources","skins","default","media","menuicons","categories.png")),(translate(32004),'glass',os.path.join(addon_path,"resources","skins","default","media","menuicons","glass.png")),(translate(32005),'alcohol',os.path.join(addon_path,"resources","skins","default","media","menuicons","alcohol.png")),(translate(32006),'ingredient',os.path.join(addon_path,"resources","skins","default","media","menuicons","ingredient.png")),(translate(32007),'search',os.path.join(addon_path,"resources","skins","default","media","menuicons","search.png")),(translate(32025),'favourites',os.path.join(addon_path,"resources","skins","default","media","menuicons","favourites.png")),(translate(32008),'screensaver',os.path.join(addon_path,"resources","skins","default","media","menuicons","screensaver.png"))]
 		for label,identifier,icon in menu_items:
 			item = xbmcgui.ListItem(label)
 			item.setArt({ 'thumb': icon })
@@ -170,6 +171,13 @@ class Main(xbmcgui.WindowXML):
 		self.alcohol = None
 		return
 		
+	def list_favourites(self):
+		has_favourites = favourites.has_favourites()
+		if has_favourites:
+			favourite_cocktails = favourites.get_favourites()
+			self.list_cocktails(favourite_cocktails)
+		return
+		
 	def list_cocktails(self,cocktails_list):
 		self.status = 'cocktail_listing'
 		if not cocktails_list:
@@ -179,6 +187,7 @@ class Main(xbmcgui.WindowXML):
 			for cocktail in cocktails_list:
 				item = xbmcgui.ListItem(cocktail.name)
 				item.setArt({ 'thumb': cocktail.thumb })
+				item.setProperty('drink_thumb',cocktail.thumb)
 				item.setProperty('id',str(cocktail.id))
 				item.setProperty('category','cocktail_listing')
 				items.append(item)
@@ -243,22 +252,63 @@ class Main(xbmcgui.WindowXML):
 					self.main_menu()
 		
 		elif action.getId() == ACTION_CONTEXT_MENU:
+
+			#restart contextmenu			
+			self.contextmenu_labels_drink = []
+			for item in contextmenu_labels_drink_original:
+				self.contextmenu_labels_drink.append(item)
+			self.contextmenu_options_drink = []
+			for item in contextmenu_options_drink_original:
+				self.contextmenu_options_drink.append(item)
+			
+			
 			if xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_DRINK_PANEL_CONTROL)+")"):
 				control = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getSelectedItem()
 				self.last_focused_drink = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getSelectedPosition()
 				control_label = control.getLabel()
+				control_thumb = control.getProperty('drink_thumb')
+				control_drink_id = control.getProperty('id')
 				if control.getProperty('id') != 'None':
-					choose = xbmcgui.Dialog().select(translate(32000),contextmenu_labels_drink)
+				
+					if favourites.is_favourite(control_drink_id):
+						self.contextmenu_labels_drink.append(translate(32028))
+						self.contextmenu_options_drink.append('removefavourite')
+					else:
+						self.contextmenu_labels_drink.append(translate(32027))
+						self.contextmenu_options_drink.append('addfavourite')
+						
+					choose = xbmcgui.Dialog().select(translate(32000),self.contextmenu_labels_drink)
 					if choose > - 1:
-						if contextmenu_options_drink[choose] == 'youtube':
+						if self.contextmenu_options_drink[choose] == 'youtube':
 							video_list = youtube.return_youtubevideos(control_label + ' drink')
 							if not video_list: xbmcgui.Dialog().ok(translate(32000),translate(32013))
 							else:
 								self.set_youtube_videos(video_list)
-						elif contextmenu_options_drink[choose] == 'recipe':
+						elif self.contextmenu_options_drink[choose] == 'recipe':
 							cocktail_id = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getSelectedItem().getProperty('id')
 							self.cocktail_player(cocktail_id)
-							return						
+							return
+						elif self.contextmenu_options_drink[choose] == 'addfavourite':
+							favourites.add_to_favourite_drinks(control_label,control_drink_id,control_thumb)
+							return
+						elif self.contextmenu_options_drink[choose] == 'removefavourite':
+							favourites.remove_from_favourites(control_drink_id)
+							items = []
+							size = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).size()
+							if size > 0:
+								for i in xrange(0,size):
+									items.append(self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getListItem(i))
+							if items:
+								refresh = True
+								for drink in items:
+									if not favourites.is_favourite(drink.getProperty('id')):
+										if drink.getProperty('id') != control_drink_id:
+											refresh = False
+											break
+								if refresh:
+									self.list_favourites()		
+							return
+						 						
 		
 	def onClick(self,controlId):
 		if controlId == REGULAR_PANEL_CONTROL:
@@ -287,6 +337,10 @@ class Main(xbmcgui.WindowXML):
 				self.last_focused_mainmenu_item = self.focused_item
 				self.reset_variables()
 				self.ingredient_picker()
+			elif identifier == 'favourites':
+				self.last_focused_mainmenu_item = self.focused_item
+				self.reset_variables()
+				self.list_favourites()
 			elif identifier == 'category_selection':
 				category = self.getControl(controlId).getSelectedItem().getLabel()
 				self.ingredient = None

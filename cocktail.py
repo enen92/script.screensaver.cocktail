@@ -135,7 +135,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 
 	def set_random(self):
 		xbmc.executebuiltin("SetProperty(loading,1,home)")
-		cocktails_list = cocktailsdb_api.Search().random()
+		cocktails_list = cocktailsdb_api.Lookup().random()
 		xbmc.sleep(200)
 		xbmc.executebuiltin("ClearProperty(instructions,Home)")
 		if int(cocktails_list[0].id) != self.drink_id:
