@@ -23,7 +23,7 @@ import thecocktaildb
 addon = xbmcaddon.Addon(id='script.screensaver.cocktail')
 addon_path = addon.getAddonInfo('path')
 addon_name = addon.getAddonInfo('name')
-cocktailsdb_api = thecocktaildb.Api('1')
+cocktailsdb_api = thecocktaildb.Api('1352')
 
 
 ACTION_CONTEXT_MENU = 117
