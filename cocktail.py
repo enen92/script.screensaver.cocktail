@@ -24,6 +24,7 @@ import sys
 import os
 import urllib
 from resources.lib import thecocktaildb
+from resources.lib import ingredient_details
 from resources.lib.common_cocktail import *
 
 if addon.getSetting('ingredient-switch') == '0': switch_percentage = 20
@@ -34,24 +35,8 @@ drinklabel = 32603
 drinkthumb = 32602
 drinksublabel = 32604
 drinkrecipe = 32606
-ingredient1thumb = 32607
-ingredient1name = 32608
-ingredient1measure = 32609
-ingredient2thumb = 32610
-ingredient2name = 32611
-ingredient2measure = 32612
-ingredient3thumb = 32613
-ingredient3name = 32614
-ingredient3measure = 32615
-ingredient4thumb = 32616
-ingredient4name = 32617
-ingredient4measure = 32618
-ingredient5thumb = 32619
-ingredient5name = 32620
-ingredient5measure = 32621
-ingredient6thumb = 32622
-ingredient6name = 32623
-ingredient6measure = 32624
+INGREDIENT_PANEL_CONTROL = 32607
+FICTIONAL_PANEL_CONTROL = 32608
 
 
 class Screensaver(xbmcgui.WindowXMLDialog):
@@ -65,6 +50,12 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 			self.screensaver_mode = True
 	
 	def onInit(self):
+	
+		#initiate fictional controler
+		ingredient = xbmcgui.ListItem('scipt.screensaver.cocktail')
+		self.getControl(FICTIONAL_PANEL_CONTROL).addItem(ingredient)
+	
+	
 		self.drink_id = 0
 		
 		if self.screensaver_mode:
@@ -162,60 +153,116 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 	def set_first_ingredients(self,cocktail):
 		self.position = 0
 		
+		ingredient_list = []
+		
 		if cocktail.ingredient1.rstrip():
-			self.getControl(ingredient1thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient1))+'.png')
-			self.getControl(ingredient1name).setText(cocktail.ingredient1)
-			if cocktail.measure1.rstrip(): self.getControl(ingredient1measure).setText('('+cocktail.measure1.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient1)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient1))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient1))+'.png')
+			if cocktail.measure1.rstrip(): ingredient.setProperty('measure','('+cocktail.measure1.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient2.rstrip():
-			self.getControl(ingredient2thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient2))+'.png')
-			self.getControl(ingredient2name).setText(cocktail.ingredient2)
-			if cocktail.measure2.rstrip(): self.getControl(ingredient2measure).setText('('+cocktail.measure2.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient2)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient2))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient2))+'.png')
+			if cocktail.measure2.rstrip(): ingredient.setProperty('measure','('+cocktail.measure2.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient3.rstrip():
-			self.getControl(ingredient3thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient3))+'.png')
-			self.getControl(ingredient3name).setText(cocktail.ingredient3)
-			if cocktail.measure3.rstrip(): self.getControl(ingredient3measure).setText('('+cocktail.measure3.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient3)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient3))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient3))+'.png')
+			if cocktail.measure3.rstrip(): ingredient.setProperty('measure','('+cocktail.measure3.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+		
 		if cocktail.ingredient4.rstrip():
-			self.getControl(ingredient4thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient4))+'.png')
-			self.getControl(ingredient4name).setText(cocktail.ingredient4)
-			if cocktail.measure4.rstrip(): self.getControl(ingredient4measure).setText('('+cocktail.measure4.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient4)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient4))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient4))+'.png')
+			if cocktail.measure4.rstrip(): ingredient.setProperty('measure','('+cocktail.measure4.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient5.rstrip():
-			self.getControl(ingredient5thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient5))+'.png')
-			self.getControl(ingredient5name).setText(cocktail.ingredient5)
-			if cocktail.measure5.rstrip(): self.getControl(ingredient5measure).setText('('+cocktail.measure5.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient5)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient5))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient5))+'.png')
+			if cocktail.measure5.rstrip(): ingredient.setProperty('measure','('+cocktail.measure5.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient6.rstrip():
-			self.getControl(ingredient6thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient6))+'.png')
-			self.getControl(ingredient6name).setText(cocktail.ingredient6)
-			if cocktail.measure6.rstrip(): self.getControl(ingredient6measure).setText('('+cocktail.measure6.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient6)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient6))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient6))+'.png')
+			if cocktail.measure6.rstrip(): ingredient.setProperty('measure','('+cocktail.measure6.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+		
+		
+		self.getControl(INGREDIENT_PANEL_CONTROL).addItems(ingredient_list)
 		if cocktail.ingredient7.rstrip(): self.pages = 2
 		return
 	
 	def set_second_ingredients(self,cocktail):
 		self.position = 1
 		
+		ingredient_list = []
+		
 		if cocktail.ingredient7.rstrip():
-			self.getControl(ingredient1thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient7))+'.png')
-			self.getControl(ingredient1name).setText(cocktail.ingredient7)
-			if cocktail.measure7.rstrip(): self.getControl(ingredient1measure).setText('('+cocktail.measure7.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient7)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient7))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient7))+'.png')
+			if cocktail.measure7.rstrip(): ingredient.setProperty('measure','('+cocktail.measure7.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient8.rstrip():
-			self.getControl(ingredient2thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient8))+'.png')
-			self.getControl(ingredient2name).setText(cocktail.ingredient8)
-			if cocktail.measure8.rstrip(): self.getControl(ingredient2measure).setText('('+cocktail.measure8.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient8)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient8))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient8))+'.png')
+			if cocktail.measure8.rstrip(): ingredient.setProperty('measure','('+cocktail.measure8.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient9.rstrip():
-			self.getControl(ingredient3thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient9))+'.png')
-			self.getControl(ingredient3name).setText(cocktail.ingredient9)
-			if cocktail.measure9.rstrip(): self.getControl(ingredient3measure).setText('('+cocktail.measure9.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient9)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient9))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient9))+'.png')
+			if cocktail.measure9.rstrip(): ingredient.setProperty('measure','('+cocktail.measure9.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+		
 		if cocktail.ingredient10.rstrip():
-			self.getControl(ingredient4thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient10))+'.png')
-			self.getControl(ingredient4name).setText(cocktail.ingredient10)
-			if cocktail.measure10.rstrip(): self.getControl(ingredient4measure).setText('('+cocktail.measure10.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient10)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient10))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient10))+'.png')
+			if cocktail.measure10.rstrip(): ingredient.setProperty('measure','('+cocktail.measure10.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient11.rstrip():
-			self.getControl(ingredient5thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient11))+'.png')
-			self.getControl(ingredient5name).setText(cocktail.ingredient11)
-			if cocktail.measure11.rstrip(): self.getControl(ingredient5measure).setText('('+cocktail.measure11.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient11)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient11))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient11))+'.png')
+			if cocktail.measure11.rstrip(): ingredient.setProperty('measure','('+cocktail.measure11.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient12.rstrip():
-			self.getControl(ingredient6thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient12))+'.png')
-			self.getControl(ingredient6name).setText(cocktail.ingredient12)
-			if cocktail.measure12.rstrip(): self.getControl(ingredient6measure).setText('('+cocktail.measure12.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient12)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient12))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient12))+'.png')
+			if cocktail.measure12.rstrip(): ingredient.setProperty('measure','('+cocktail.measure12.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+		
+		
+		self.getControl(INGREDIENT_PANEL_CONTROL).addItems(ingredient_list)
 		if cocktail.ingredient13.rstrip(): self.pages = 3
 		return
 		
@@ -223,17 +270,32 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 		self.position = 2
 		
 		if cocktail.ingredient13.rstrip():
-			self.getControl(ingredient1thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient13))+'.png')
-			self.getControl(ingredient1name).setText(cocktail.ingredient13)
-			if cocktail.measure13.rstrip(): self.getControl(ingredient1measure).setText('('+cocktail.measure13.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient13)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient13))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient13))+'.png')
+			if cocktail.measure13.rstrip(): ingredient.setProperty('measure','('+cocktail.measure13.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient14.rstrip():
-			self.getControl(ingredient2thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient14))+'.png')
-			self.getControl(ingredient2name).setText(cocktail.ingredient14)
-			if cocktail.measure14.rstrip(): self.getControl(ingredient2measure).setText('('+cocktail.measure14.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient14)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient14))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient14))+'.png')
+			if cocktail.measure14.rstrip(): ingredient.setProperty('measure','('+cocktail.measure14.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+			
 		if cocktail.ingredient15.rstrip():
-			self.getControl(ingredient3thumb).setImage('http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient14))+'.png')
-			self.getControl(ingredient3name).setText(cocktail.ingredient14)
-			if cocktail.measure15.rstrip(): self.getControl(ingredient3measure).setText('('+cocktail.measure14.rstrip()+')')
+			ingredient = xbmcgui.ListItem(cocktail.ingredient15)
+			ingredient.setArt({ 'thumb': 'http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient15))+'.png' })
+			ingredient.setProperty('ingredient_thumb','http://www.thecocktaildb.com/images/ingredients/'+urllib.quote(removeNonAscii(cocktail.ingredient15))+'.png')
+			if cocktail.measure15.rstrip(): ingredient.setProperty('measure','('+cocktail.measure15.rstrip()+')')
+			else: ingredient.setProperty('measure','')
+			ingredient_list.append(ingredient)
+		return
+		
+	def set_ingredient_description(self,ingredient_name,ingredient_thumb,ingredient_description):
+		ingredient_details.start(ingredient_name,ingredient_thumb,ingredient_description)
 		return
 		
 	def clear_all(self):
@@ -245,24 +307,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 		return
 		
 	def clear_ingredients(self):
-		self.getControl(ingredient1thumb).setImage('')
-		self.getControl(ingredient1name).setText('')
-		self.getControl(ingredient1measure).setText('')
-		self.getControl(ingredient2thumb).setImage('')
-		self.getControl(ingredient2name).setText('')
-		self.getControl(ingredient2measure).setText('')
-		self.getControl(ingredient3thumb).setImage('')
-		self.getControl(ingredient3name).setText('')
-		self.getControl(ingredient3measure).setText('')
-		self.getControl(ingredient4thumb).setImage('')
-		self.getControl(ingredient4name).setText('')
-		self.getControl(ingredient4measure).setText('')
-		self.getControl(ingredient5thumb).setImage('')
-		self.getControl(ingredient5name).setText('')
-		self.getControl(ingredient5measure).setText('')
-		self.getControl(ingredient6thumb).setImage('')
-		self.getControl(ingredient6name).setText('')
-		self.getControl(ingredient6measure).setText('')
+		self.getControl(INGREDIENT_PANEL_CONTROL).reset()
 		return
 		
 	def close_screensaver(self):
@@ -271,8 +316,20 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 		return
 		
 	def onAction(self,action):
+		if action.getId() == ACTION_ENTER:
+			
+			if not xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
+				size = self.getControl(INGREDIENT_PANEL_CONTROL).size()
+				if size > 0:
+					self.setFocusId(INGREDIENT_PANEL_CONTROL)
+					self.getControl(INGREDIENT_PANEL_CONTROL).selectItem(0)
+			else:
+				ingredient_name = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getLabel()
+				ingredient_thumb = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getProperty('ingredient_thumb')
+				ingredient_description = "TODO"
+				self.set_ingredient_description(ingredient_name,ingredient_thumb,ingredient_description)
 		
-		if action.getId() == ACTION_RIGHT:
+		if action.getId() == ACTION_RIGHT and not xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
 			if self.position == 0 and self.pages > 1:
 				self.clear_ingredients()
 				self.set_second_ingredients(self.cocktail_obj)
@@ -284,7 +341,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 					self.current_time = 0
 					self.set_random()
 		
-		elif action.getId() == ACTION_LEFT:
+		elif action.getId() == ACTION_LEFT and not xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
 			if self.position == 2 and self.pages <= 3:
 				self.clear_ingredients()
 				self.set_second_ingredients(self.cocktail_obj)
@@ -317,11 +374,20 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 								self.set_cocktail(cocktails_list[choose])
 							
 		else:
-			if self.screensaver_mode:
-				self.close_screensaver()
-			else:
-				if action.getId() == ACTION_RETURN or action.getId() == ACTION_ESCAPE:
-					self.close_screensaver()
+			if action.getId() != 7:
+				if self.screensaver_mode:
+					if not xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
+						self.close_screensaver()
+					else:
+						if action.getId() == ACTION_RETURN or action.getId() == ACTION_ESCAPE:
+							if xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
+								self.setFocusId(FICTIONAL_PANEL_CONTROL)	
+				else:
+					if action.getId() == ACTION_RETURN or action.getId() == ACTION_ESCAPE:
+						if xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
+							self.setFocusId(FICTIONAL_PANEL_CONTROL)
+						else:
+							self.close_screensaver()
 
 
 if __name__ == '__main__':

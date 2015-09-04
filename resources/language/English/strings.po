@@ -71,7 +71,7 @@ msgid "No videos found"
 msgstr ""
 
 msgctxt "#32014"
-msgid "Press the context menu key to search for cocktails.[CR]Press left or right to get random drinks.[CR] Enjoy your drink!"
+msgid "Press the context menu key to search for cocktails.[CR]Press left or right to get random drinks.[CR]Press select to select ingredients and read their description.[CR] Enjoy your drink!"
 msgstr ""
 
 #settings
