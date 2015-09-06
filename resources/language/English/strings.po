@@ -131,3 +131,7 @@ msgstr ""
 msgctxt "#32028"
 msgid "Remove from favourites"
 msgstr ""
+
+msgctxt "#32029"
+msgid "Ingredient description not available."
+msgstr ""

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
     script.screensaver.cocktail - A random cocktail recipe screensaver for kodi 
-    Copyright (C) 2015 enen92
+    Copyright (C) 2015 enen92,Zag
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ import os
 import urllib
 import cocktail as cocktailscreensaver
 from resources.lib import thecocktaildb
+from resources.lib import ingredient_details
 from resources.lib import youtube
 from resources.lib import favourites
 from resources.lib.common_cocktail import *
@@ -140,6 +141,7 @@ class Main(xbmcgui.WindowXML):
 			item = xbmcgui.ListItem(label)
 			item.setArt({ 'thumb': thecocktaildb.API_INGREDIENT_URL + urllib.quote(removeNonAscii(label)) +'.png' })
 			item.setProperty('category','ingredient_picker')
+			item.setProperty('ingredient_thumb',thecocktaildb.API_INGREDIENT_URL + urllib.quote(removeNonAscii(label)) +'.png' )
 			item.setProperty('id','None')
 			items.append(item)
 		self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).reset()
@@ -223,6 +225,10 @@ class Main(xbmcgui.WindowXML):
 		)
 		screensaver.doModal()
 		del screensaver
+		
+	def set_ingredient_description(self,ingredient_name,ingredient_thumb,ingredient_description):
+		ingredient_details.start(ingredient_name,ingredient_thumb,ingredient_description)
+		return
 			
 	def onAction(self,action):
 		if action.getId() == ACTION_RETURN or action.getId() == ACTION_ESCAPE:
@@ -306,8 +312,16 @@ class Main(xbmcgui.WindowXML):
 											refresh = False
 											break
 								if refresh:
-									self.list_favourites()		
-							return
+									self.list_favourites()
+				else:
+					#If here...we are in ingredient picker
+					ingredient_name = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getSelectedItem().getLabel()
+					ingredient_thumb = self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).getSelectedItem().getProperty('ingredient_thumb')
+					#TODO get ingredient description when available
+					ingredient_description = translate(32029)
+					self.set_ingredient_description(ingredient_name,ingredient_thumb,ingredient_description)
+				
+			return
 						 						
 		
 	def onClick(self,controlId):

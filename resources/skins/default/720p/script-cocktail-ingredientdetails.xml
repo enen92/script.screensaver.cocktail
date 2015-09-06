@@ -37,7 +37,7 @@
 		</control>
 		<control type="image" id="32610">
 			<description>ingredient image</description>
-			<posx>50</posx>
+			<posx>100</posx>
 			<posy>90</posy>
 			<aspectratio scalediffuse="false" align="center" aligny="center">keep</aspectratio>
 			<colordiffuse>FFFFFFFF</colordiffuse>
@@ -47,9 +47,9 @@
 		</control>
 		<control type="textbox" id="32611">
 			<description>Ingredient description</description>
-			<posx>360</posx>
+			<posx>460</posx>
 			<posy>95</posy>
-			<width>740</width>
+			<width>650</width>
 			<height>330</height>
 			<aligny>top</aligny>
 			<colordiffuse>FFFFFFFF</colordiffuse>

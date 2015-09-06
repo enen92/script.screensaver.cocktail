@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
     script.screensaver.cocktail - A random cocktail recipe screensaver for kodi 
-    Copyright (C) 2015 enen92
+    Copyright (C) 2015 enen92,Zag
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -293,7 +293,7 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 			else: ingredient.setProperty('measure','')
 			ingredient_list.append(ingredient)
 		return
-		
+	
 	def set_ingredient_description(self,ingredient_name,ingredient_thumb,ingredient_description):
 		ingredient_details.start(ingredient_name,ingredient_thumb,ingredient_description)
 		return
@@ -326,7 +326,8 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 			else:
 				ingredient_name = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getLabel()
 				ingredient_thumb = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getProperty('ingredient_thumb')
-				ingredient_description = "TODO"
+				#TODO get ingredient description when available
+				ingredient_description = translate(32029)
 				self.set_ingredient_description(ingredient_name,ingredient_thumb,ingredient_description)
 		
 		if action.getId() == ACTION_RIGHT and not xbmc.getCondVisibility("Control.HasFocus("+str(INGREDIENT_PANEL_CONTROL)+")"):
@@ -388,6 +389,15 @@ class Screensaver(xbmcgui.WindowXMLDialog):
 							self.setFocusId(FICTIONAL_PANEL_CONTROL)
 						else:
 							self.close_screensaver()
+							
+	def onClick(self,controlId):
+		if controlId == INGREDIENT_PANEL_CONTROL:
+			ingredient_name = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getLabel()
+			ingredient_thumb = self.getControl(INGREDIENT_PANEL_CONTROL).getSelectedItem().getProperty('ingredient_thumb')
+			#TODO get ingredient description when available
+			ingredient_description = translate(32029)
+			self.set_ingredient_description(ingredient_name,ingredient_thumb,ingredient_description)
+			
 
 
 if __name__ == '__main__':

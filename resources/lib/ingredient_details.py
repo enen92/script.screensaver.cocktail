@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
     script.screensaver.cocktail - A random cocktail recipe screensaver for kodi 
-    Copyright (C) 2015 enen92
+    Copyright (C) 2015 enen92,Zag
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,6 +43,10 @@ class Ingredientdetails(xbmcgui.WindowXMLDialog):
 		self.getControl(ingredientlabel).setLabel(self.ingredient_title)
 		self.getControl(ingredientthumb).setImage(self.ingredient_thumb)
 		self.getControl(ingredientdescription).setText(self.ingredient_description)
+		
+	def onAction(self,action):
+		if action.getId() == ACTION_RETURN or action.getId() == ACTION_ESCAPE:
+			self.close()
 
 
 def start(name,thumb,description):
