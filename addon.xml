@@ -7,6 +7,7 @@
 	<extension point="xbmc.python.script" library="interface.py" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 		<website>http://www.thecocktaildb.com/</website>
 		<source>https://github.com/enen92/script.screensaver.cocktail</source>
 		<forum>http://forum.kodi.tv/showthread.php?tid=238039</forum>
