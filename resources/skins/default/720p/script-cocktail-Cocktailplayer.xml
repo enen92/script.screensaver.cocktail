@@ -120,14 +120,14 @@
 						<fadetime>0</fadetime>
 					</control>
 					<control type="textbox">
-						<width>150</width>
-						<height>55</height>
-						<posx>0</posx>
-						<posy>170</posy>
+						<width>190</width>
+						<height>75</height>
+						<posx>-15</posx>
+						<posy>160</posy>
 						<align>center</align>
 						<aligny>center</aligny>
 						<colordiffuse>FFFFFFFF</colordiffuse>
-            				<font>font14</font>
+            				<font>font13</font>
             				<textcolor>orangered</textcolor>
             				<shadowcolor>88000000</shadowcolor>
 						<info>ListItem.Label</info>
@@ -175,14 +175,14 @@
 						<fadetime>0</fadetime>
 					</control>
 					<control type="textbox">
-						<width>150</width>
-						<height>55</height>
-						<posx>0</posx>
-						<posy>170</posy>
+						<width>190</width>
+						<height>75</height>
+						<posx>-15</posx>
+						<posy>160</posy>
 						<align>center</align>
 						<aligny>center</aligny>
 						<colordiffuse>FFFFFFFF</colordiffuse>
-            				<font>font14</font>
+            				<font>font13</font>
             				<textcolor>orangered</textcolor>
             				<shadowcolor>88000000</shadowcolor>
 						<info>ListItem.Label</info>
