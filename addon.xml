@@ -3,7 +3,7 @@
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
-	<extension point="xbmc.ui.screensaver" library="cocktail.py" />
+	<extension point="xbmc.ui.screensaver" library="screensaverdeactivator.py" />
 	<extension point="xbmc.python.script" library="interface.py" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>

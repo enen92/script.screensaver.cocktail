@@ -422,12 +422,17 @@ class Main(xbmcgui.WindowXML):
 
 if __name__ == '__main__':
 
-	main = Main(
-		'script-cocktail-Main.xml',
-		addon_path,
-		'default',
-		'',
-	)
-	main.doModal()
-	del main
-	sys.modules.clear()
+	if len(sys.argv) <= 1:
+		#Start interface
+		main = Main(
+			'script-cocktail-Main.xml',
+			addon_path,
+			'default',
+			'',
+		)
+		main.doModal()
+		del main
+		sys.modules.clear()
+	else:
+		#Start screensaver
+		xbmc.executescript(os.path.join(addon_path,'cocktail.py'))
