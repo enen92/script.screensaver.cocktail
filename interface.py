@@ -35,6 +35,8 @@ contextmenu_options_drink_original = ['recipe','youtube']
 
 INGREDIENT_DRINK_PANEL_CONTROL = 32501
 REGULAR_PANEL_CONTROL = 32500
+BACK_BACKGROUND_CONTROL = 32502
+BACK_ICON_CONTROL = 32503
 
 
 class Main(xbmcgui.WindowXML):
@@ -52,6 +54,10 @@ class Main(xbmcgui.WindowXML):
 			self.last_focused_category_item = 0
 			self.last_focused_alchool_item = 0
 			self.main_menu()
+		#Enable back button for touch devices
+		if addon.getSetting('enable-back') == "false":
+			self.getControl(BACK_BACKGROUND_CONTROL).setVisible(False)
+			self.getControl(BACK_ICON_CONTROL).setVisible(False)
 		
 	def main_menu(self):
 		self.status = 'main_menu'

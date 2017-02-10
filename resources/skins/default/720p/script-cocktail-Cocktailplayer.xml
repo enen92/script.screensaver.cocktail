@@ -279,7 +279,7 @@
 		</control>
 
 
-		<control type="button">
+		<control type="button" id="32609">
 		      <description>Back</description>
 		      <left>1200</left>
 		      <top>650</top>
@@ -298,14 +298,16 @@
 		      <onclick>Action(back)</onclick>
 		      <onfocus>-</onfocus>
 		      <onunfocus>-</onunfocus>
+		      <visible>true</visible>
 		</control>
-		<control type="image">
+		<control type="image" id="32610">
 				<left>1224</left>
 			    <top>673</top>
 				<width>30</width>
 				<height>30</height>
 				<texture>buttons/arrowback.png</texture>
 				<aspectratio aligny="center">scale</aspectratio>
+				<visible>true</visible>
 		</control>
     </controls>
 </window>
