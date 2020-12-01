@@ -43,7 +43,7 @@ ACTION_ENTER = 7
 
 
 def removeNonAscii(s):
-	return "".join(filter(lambda x: ord(x)<128, s))
+    return "".join(filter(lambda x: ord(x)<128, s))
 
 def translate(text):
-	return addon.getLocalizedString(text).encode('utf-8')
+    return addon.getLocalizedString(text).encode('utf-8')

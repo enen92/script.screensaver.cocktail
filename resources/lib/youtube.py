@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-    script.screensaver.cocktail - A random cocktail recipe screensaver for kodi 
+    script.screensaver.cocktail - A random cocktail recipe screensaver for kodi
     Copyright (C) 2015 enen92,Zag
 
     This program is free software: you can redistribute it and/or modify
