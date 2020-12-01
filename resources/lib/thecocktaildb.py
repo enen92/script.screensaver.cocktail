@@ -26,7 +26,8 @@ API_INGREDIENT_URL = 'http://www.thecocktaildb.com/images/ingredients/'
 
 
 class Api:
-	
+
+
 	def __init__(self,API_KEY=None):
 		global APIKEY
 		APIKEY = API_KEY
@@ -34,15 +35,16 @@ class Api:
 			print "Module initiated with API key " + str(API_KEY)
 		else:
 			print "API Key not valid or with the wrong type"
-	
-		
+
+
 	class Search:
-	
+
+
 		def cocktail(self,name=None):
 			if name == None:
 				print "Error: cocktail name not provided"
 				return None
-			else:				
+			else:
 				url = '%s/%s/search.php?s=%s' % (API_BASE_URL,APIKEY,str(name))
 				print url
 				data = json.load(urllib2.urlopen(url))["drinks"]
@@ -54,6 +56,7 @@ class Api:
 					for dict_ in data:
 						cocktails.append(Cocktail(dict_))
 					return cocktails
+
 
 		def ingredient(self,name=None):
 			if name == None:
@@ -69,7 +72,8 @@ class Api:
 					return data[0]["strDescription"]
 
 	class List:
-		
+
+
 		def alcoholic(self):
 			return_list = []
 			url = '%s/%s/list.php?a=list' % (API_BASE_URL,APIKEY)
@@ -78,7 +82,8 @@ class Api:
 				for item in data:
 					if item["strAlcoholic"]: return_list.append(item["strAlcoholic"])
 			return return_list
-		
+
+
 		def glass(self):
 			return_list = []
 			url = '%s/%s/list.php?g=list' % (API_BASE_URL,APIKEY)
@@ -87,7 +92,8 @@ class Api:
 				for item in data:
 					if item["strGlass"]: return_list.append(item["strGlass"])
 			return return_list
-			
+
+
 		def category(self):
 			return_list = []
 			url = '%s/%s/list.php?c=list' % (API_BASE_URL,APIKEY)
@@ -96,7 +102,8 @@ class Api:
 				for item in data:
 					if item["strCategory"]: return_list.append(item["strCategory"])
 			return return_list
-			
+
+
 		def ingredient(self):
 			return_list = []
 			url = '%s/%s/list.php?i=list' % (API_BASE_URL,APIKEY)
@@ -105,9 +112,11 @@ class Api:
 				for item in data:
 					if item["strIngredient1"]: return_list.append(item["strIngredient1"])
 			return return_list
-			
+
+
 	class Filter:
-		
+
+
 		def glass(self,glass):
 			cocktails = []
 			url = '%s/%s/filter.php?g=%s' % (API_BASE_URL,APIKEY,glass.replace(' ','_'))
@@ -116,7 +125,8 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail_lite(dict_))
 			return cocktails
-			
+
+
 		def category(self,category):
 			cocktails = []
 			url = '%s/%s/filter.php?c=%s' % (API_BASE_URL,APIKEY,category.replace(' ','_'))
@@ -125,7 +135,8 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail_lite(dict_))
 			return cocktails
-			
+
+
 		def alcohol(self,alcool):
 			cocktails = []
 			url = '%s/%s/filter.php?a=%s' % (API_BASE_URL,APIKEY,alcool.replace(' ','_'))
@@ -134,7 +145,8 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail_lite(dict_))
 			return cocktails
-			
+
+
 		def ingredient(self,ingredient):
 			cocktails = []
 			url = '%s/%s/filter.php?i=%s' % (API_BASE_URL,APIKEY,ingredient.replace(' ','_'))
@@ -143,9 +155,11 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail_lite(dict_))
 			return cocktails
-			
+
+
 	class Lookup:
-		
+
+
 		def cocktail(self,cocktail_id):
 			cocktails = []
 			url = '%s/%s/lookup.php?i=%s' % (API_BASE_URL,APIKEY,str(cocktail_id))
@@ -154,7 +168,8 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail(dict_))
 			return cocktails
-			
+
+
 		def random(self):
 			cocktails = []
 			url = '%s/%s/random.php' % (API_BASE_URL,APIKEY)
@@ -163,11 +178,10 @@ class Api:
 				for dict_ in data:
 					cocktails.append(Cocktail(dict_))
 				return cocktails
-			
-					
-			
-					
+
+
 class Cocktail:
+
 
 	def __init__(self,cocktail_dict):
 		self.id = cocktail_dict["idDrink"]
@@ -207,18 +221,11 @@ class Cocktail:
 		self.measure13 = cocktail_dict["strMeasure13"]
 		self.measure14 = cocktail_dict["strMeasure14"]
 		self.measure15 = cocktail_dict["strMeasure15"]
-		
+
+
 class Cocktail_lite:
 
 	def __init__(self,cocktail_dict):
 		self.id = cocktail_dict["idDrink"]
 		self.name = cocktail_dict["strDrink"]
 		self.thumb = cocktail_dict["strDrinkThumb"]
-		
-		
-		
-		
-		
-		
-		
-		

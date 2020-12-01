@@ -28,7 +28,8 @@ def add_to_favourite_drinks(drink_name,drink_id,drink_image):
 	save(filename,content)
 	xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % (translate(32000), translate(32022),1,os.path.join(addon_path,"icon.png")))
 	return
-	
+
+
 def remove_from_favourites(drink_id):
 	filename = os.path.join(favourite_drinks_folder,str(drink_id)+'.txt')
 	if os.path.exists(filename):
@@ -38,6 +39,7 @@ def remove_from_favourites(drink_id):
 		xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % (translate(32000), translate(32024),1,os.path.join(addon_path,"icon.png")))
 	return
 
+
 def has_favourites():
 	drinks = os.listdir(favourite_drinks_folder)
 	if drinks:
@@ -45,12 +47,14 @@ def has_favourites():
 	else:
 		xbmc.executebuiltin("Notification(%s,%s,%i,%s)" % (translate(32000), translate(32026),1,os.path.join(addon_path,"icon.png")))
 		return False
-		
+
+
 def is_favourite(drink_id):
 	filename = os.path.join(favourite_drinks_folder,str(drink_id) + '.txt')
 	if os.path.exists(filename): return True
-	else: return False	
-	
+	else: return False
+
+
 def get_favourites():
 	favourite_cocktails = []
 	drinks = os.listdir(favourite_drinks_folder)
@@ -62,12 +66,12 @@ def get_favourites():
 			favourite_cocktails.append(thecocktaildb.Cocktail_lite(drink_dict ))
 	return favourite_cocktails
 
-def save(filename,contents):  
-	fh = open(filename, 'w')
-	fh.write(contents)  
-	fh.close()
-     
+def save(filename,contents):
+	with open(filename, 'w') as fh:
+		fh.write(contents)
+
+
 def readfile(filename):
-	f = open(filename, "r")
-	string = f.read()
-	return string
+	with open(filename, "r") as f:
+		string = f.read()
+		return string
