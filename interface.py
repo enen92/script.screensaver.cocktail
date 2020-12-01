@@ -31,7 +31,7 @@ BACK_ICON_CONTROL = 32503
 
 class Main(xbmcgui.WindowXML):
 
-     def __init__( self, *args, **kwargs ):
+    def __init__( self, *args, **kwargs ):
         self.status = None
         self.ingredient = None
         self.category = None
