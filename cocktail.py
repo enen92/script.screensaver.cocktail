@@ -402,4 +402,3 @@ if __name__ == '__main__':
     )
     screensaver.doModal()
     del screensaver
-    sys.modules.clear()

@@ -19,7 +19,6 @@ ingredientthumb = 32610
 ingredientdescription = 32611
 
 
-
 class Ingredientdetails(xbmcgui.WindowXMLDialog):
 
 

@@ -56,11 +56,47 @@ class Main(xbmcgui.WindowXML):
         self.last_focused_drink = 0
         self.last_focused_ingredient = 0
         items = []
-        menu_items = [(translate(32003),'categories',os.path.join(addon_path,"resources","skins","default","media","menuicons","categories.png")),(translate(32004),'glass',os.path.join(addon_path,"resources","skins","default","media","menuicons","glass.png")),(translate(32005),'alcohol',os.path.join(addon_path,"resources","skins","default","media","menuicons","alcohol.png")),(translate(32006),'ingredient',os.path.join(addon_path,"resources","skins","default","media","menuicons","ingredient.png")),(translate(32007),'search',os.path.join(addon_path,"resources","skins","default","media","menuicons","search.png")),(translate(32025),'favourites',os.path.join(addon_path,"resources","skins","default","media","menuicons","favourites.png")),(translate(32008),'screensaver',os.path.join(addon_path,"resources","skins","default","media","menuicons","screensaver.png"))]
+        menu_items = [
+            (
+                translate(32003),
+                'categories',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","categories.png")
+            ),
+            (
+                translate(32004),
+                'glass',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","glass.png")
+            ),
+            (
+                translate(32005),
+                'alcohol',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","alcohol.png")
+            ),
+            (
+                translate(32006),
+                'ingredient',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","ingredient.png")
+            ),
+            (
+                translate(32007),
+                'search',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","search.png")
+            ),
+            (
+                translate(32025),
+                'favourites',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","favourites.png")
+            ),
+            (
+                translate(32008),
+                'screensaver',
+                os.path.join(addon_path,"resources","skins","default","media","menuicons","screensaver.png")
+            )
+        ]
         for label,identifier,icon in menu_items:
             item = xbmcgui.ListItem(label)
             item.setArt({ 'thumb': icon })
-            item.setProperty('category',identifier)
+            item.setProperty('category', identifier)
             items.append(item)
         self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).reset()
         self.getControl(REGULAR_PANEL_CONTROL).reset()
@@ -80,7 +116,7 @@ class Main(xbmcgui.WindowXML):
         xbmc.executebuiltin( "Dialog.Close(busydialog)" )
         for label in categories:
             item = xbmcgui.ListItem(label)
-            item.setArt({ 'thumb': os.path.join(addon_path,"resources","skins","default","media","menuicons",urllib.quote(label).lower()+".png") })
+            item.setArt({ 'thumb': os.path.join(addon_path,"resources","skins","default","media","menuicons", urllib.quote(label).lower() + ".png") })
             item.setProperty('category','alcoholic_selection')
             items.append(item)
         self.getControl(INGREDIENT_DRINK_PANEL_CONTROL).reset()
@@ -440,7 +476,6 @@ if __name__ == '__main__':
         )
         main.doModal()
         del main
-        sys.modules.clear()
     else:
         #Start screensaver
         xbmc.executescript(os.path.join(addon_path, 'cocktail.py'))
