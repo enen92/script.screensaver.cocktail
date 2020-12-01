@@ -1,20 +1,10 @@
 # -*- coding: utf-8 -*-
 '''
-    script.screensaver.cocktail - A random cocktail recipe screensaver for kodi
-    Copyright (C) 2015 enen92,Zag
+   Copyright (C) 2015-2020 enen92,Zag
+   This file is part of script.screensaver.cocktail
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   SPDX-License-Identifier: GPL-2.0-only
+   See LICENSE for more information.
 '''
 import xbmc
 import sys
@@ -37,8 +27,8 @@ class ScreensaverPreview(xbmcgui.WindowXMLDialog):
 
     def exit(self):
         self.close()
-        #Call the screensaver asynchronously and die
-        xbmc.executebuiltin('RunAddon(script.screensaver.cocktail,teste)')
+        # Call the screensaver asynchronously and die
+        xbmc.executebuiltin('RunAddon(script.screensaver.cocktail)')
 
 if __name__ == '__main__':
     if not xbmc.getCondVisibility('Window.IsActive(script-cocktail-Cocktailplayer.xml)'):
