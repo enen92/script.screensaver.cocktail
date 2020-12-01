@@ -2,7 +2,6 @@
 <window type="window">
 	<defaultcontrol always="false">32500</defaultcontrol>
     <controls>
-
         <control type="image">
             <description>Background image</description>
             <posx>0</posx>
@@ -13,7 +12,6 @@
             <height>720</height>
             <texture>fanart.jpg</texture>
         </control>
-
         <control type="image">
             <description>image</description>
             <posx>10</posx>
@@ -22,8 +20,7 @@
             <colordiffuse>FFFFFFFF</colordiffuse>
             <width>300</width>
             <texture>logo.png</texture>
-        </control>       
-
+        </control>
         <control type="textbox">
             <description>Clock</description>
             <posx>840</posx>
@@ -38,11 +35,8 @@
             <shadowcolor>88000000</shadowcolor>
             <label>$INFO[System.Time]</label>
         </control>
-        
 	<!-- Main menu / Categories -->
-
 	<control type="group">
-	
 		<control type="panel" id="32500">
 			<posx>30</posx>
 			<posy>80</posy>
@@ -124,11 +118,8 @@
 			</focusedlayout>
 		</control>
 	</control>
-	
 	<!-- Ingredients / Drinks listing -->
-
 	<control type="group">
-	
 		<control type="panel" id="32501">
 			<posx>15</posx>
 			<posy>80</posy>

@@ -10,19 +10,20 @@
 import xbmc
 import xbmcaddon
 import xbmcvfs
-import thecocktaildb
 import os
 
-addon = xbmcaddon.Addon(id='script.screensaver.cocktail')
-addon_path = addon.getAddonInfo('path')
-addon_userdata = xbmc.translatePath(addon.getAddonInfo('profile')).decode('utf-8')
-addon_name = addon.getAddonInfo('name')
-cocktailsdb_api = thecocktaildb.Api('1352')
-favourite_drinks_folder = os.path.join(addon_userdata,'favourites')
+from resources.lib import thecocktaildb
 
-if not os.path.exists(addon_userdata): xbmcvfs.mkdir(addon_userdata)
-if not os.path.exists(favourite_drinks_folder): xbmcvfs.mkdir(favourite_drinks_folder)
+ADDON = xbmcaddon.Addon(id='script.screensaver.cocktail')
+ADDON_PATH = ADDON.getAddonInfo('path')
+ADDON_USERDATA = xbmc.translatePath(ADDON.getAddonInfo('profile')).decode('utf-8')
+ADDON_NAME = ADDON.getAddonInfo('name')
+FAVOURITE_DRINK_FOLDER = os.path.join(ADDON_USERDATA, 'favourites')
+MEDIA_FOLDER = os.path.join(ADDON_PATH, "resources", "skins", "default", "media")
+MENU_ITEMS_FOLDER = os.path.join(ADDON_PATH, "resources", "skins", "default", "media", "menuicons")
+NOT_AVAILABLE_ICON = os.path.join(MENU_ITEMS_FOLDER, "notavailable.png")
 
+COCKTAIL_API = thecocktaildb.Api('1352')
 
 ACTION_CONTEXT_MENU = 117
 ACTION_LEFT = 1
@@ -35,5 +36,10 @@ ACTION_ENTER = 7
 def removeNonAscii(s):
     return "".join(filter(lambda x: ord(x)<128, s))
 
-def translate(text):
-    return addon.getLocalizedString(text).encode('utf-8')
+
+def init_folders():
+    if not os.path.exists(ADDON_USERDATA):
+        xbmcvfs.mkdir(ADDON_USERDATA)
+
+    if not os.path.exists(FAVOURITE_DRINK_FOLDER):
+        xbmcvfs.mkdir(FAVOURITE_DRINK_FOLDER)

@@ -10,36 +10,35 @@
 import json
 import urllib
 import urllib2
+from resources.lib.kodiutils import log
 
 API_BASE_URL = 'http://www.thecocktaildb.com/api/json/v1'
 API_INGREDIENT_URL = 'http://www.thecocktaildb.com/images/ingredients/'
-
+API_KEY = None
 
 class Api:
 
-
-    def __init__(self,API_KEY=None):
-        global APIKEY
-        APIKEY = API_KEY
-        if APIKEY != None and type(APIKEY) == str:
-            print "Module initiated with API key " + str(API_KEY)
+    def __init__(self, key=None):
+        if key and type(key) == str:
+            global API_KEY
+            API_KEY = key
+            log("Module initiated with API key {}".format(key))
         else:
-            print "API Key not valid or with the wrong type"
+            log("API Key not valid or with the wrong type")
 
+    def get_ingredient_url(self):
+        return API_INGREDIENT_URL
 
     class Search:
 
-
-        def cocktail(self,name=None):
+        def cocktail(self, name=None):
             if name == None:
-                print "Error: cocktail name not provided"
+                log("Error: cocktail name not provided")
                 return None
             else:
-                url = '%s/%s/search.php?s=%s' % (API_BASE_URL,APIKEY,str(name))
-                print url
+                url = '%s/%s/search.php?s=%s' % (API_BASE_URL, API_KEY, str(name))
                 data = json.load(urllib2.urlopen(url))["drinks"]
                 if not data:
-                    print "No cocktails found"
                     return None
                 else:
                     cocktails = []
@@ -48,35 +47,35 @@ class Api:
                     return cocktails
 
 
-        def ingredient(self,name=None):
+        def ingredient(self, name=None):
             if name == None:
-                print "Error: ingredient not found"
+                log("Error: ingredient not found")
                 return None
             else:
-                url = '%s/%s/search.php?i=%s' % (API_BASE_URL,APIKEY,urllib.quote_plus(str(name)))
+                url = '%s/%s/search.php?i=%s' % (API_BASE_URL, API_KEY, urllib.quote_plus(str(name)))
                 data = json.load(urllib2.urlopen(url))["ingredients"]
                 if not data:
-                    print "No ingredients found"
+                    log("No ingredients found")
                     return None
                 else:
                     return data[0]["strDescription"]
 
     class List:
 
-
         def alcoholic(self):
             return_list = []
-            url = '%s/%s/list.php?a=list' % (API_BASE_URL,APIKEY)
+            url = '%s/%s/list.php?a=list' % (API_BASE_URL, API_KEY)
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for item in data:
-                    if item["strAlcoholic"]: return_list.append(item["strAlcoholic"])
+                    if item["strAlcoholic"]:
+                        return_list.append(item["strAlcoholic"])
             return return_list
 
 
         def glass(self):
             return_list = []
-            url = '%s/%s/list.php?g=list' % (API_BASE_URL,APIKEY)
+            url = '%s/%s/list.php?g=list' % (API_BASE_URL,  API_KEY)
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for item in data:
@@ -86,7 +85,7 @@ class Api:
 
         def category(self):
             return_list = []
-            url = '%s/%s/list.php?c=list' % (API_BASE_URL,APIKEY)
+            url = '%s/%s/list.php?c=list' % (API_BASE_URL, API_KEY)
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for item in data:
@@ -96,7 +95,7 @@ class Api:
 
         def ingredient(self):
             return_list = []
-            url = '%s/%s/list.php?i=list' % (API_BASE_URL,APIKEY)
+            url = '%s/%s/list.php?i=list' % (API_BASE_URL, API_KEY)
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for item in data:
@@ -106,10 +105,9 @@ class Api:
 
     class Filter:
 
-
         def glass(self,glass):
             cocktails = []
-            url = '%s/%s/filter.php?g=%s' % (API_BASE_URL,APIKEY,glass.replace(' ','_'))
+            url = '%s/%s/filter.php?g=%s' % (API_BASE_URL, API_KEY,glass.replace(' ','_'))
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
@@ -119,7 +117,7 @@ class Api:
 
         def category(self,category):
             cocktails = []
-            url = '%s/%s/filter.php?c=%s' % (API_BASE_URL,APIKEY,category.replace(' ','_'))
+            url = '%s/%s/filter.php?c=%s' % (API_BASE_URL, API_KEY, category.replace(' ','_'))
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
@@ -129,7 +127,7 @@ class Api:
 
         def alcohol(self,alcool):
             cocktails = []
-            url = '%s/%s/filter.php?a=%s' % (API_BASE_URL,APIKEY,alcool.replace(' ','_'))
+            url = '%s/%s/filter.php?a=%s' % (API_BASE_URL, API_KEY, alcool.replace(' ','_'))
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
@@ -139,7 +137,7 @@ class Api:
 
         def ingredient(self,ingredient):
             cocktails = []
-            url = '%s/%s/filter.php?i=%s' % (API_BASE_URL,APIKEY,ingredient.replace(' ','_'))
+            url = '%s/%s/filter.php?i=%s' % (API_BASE_URL, API_KEY, ingredient.replace(' ','_'))
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
@@ -152,17 +150,16 @@ class Api:
 
         def cocktail(self,cocktail_id):
             cocktails = []
-            url = '%s/%s/lookup.php?i=%s' % (API_BASE_URL,APIKEY,str(cocktail_id))
+            url = '%s/%s/lookup.php?i=%s' % (API_BASE_URL, API_KEY,str(cocktail_id))
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
                     cocktails.append(Cocktail(dict_))
             return cocktails
 
-
         def random(self):
             cocktails = []
-            url = '%s/%s/random.php' % (API_BASE_URL,APIKEY)
+            url = '%s/%s/random.php' % (API_BASE_URL, API_KEY)
             data = json.load(urllib2.urlopen(url))["drinks"]
             if data:
                 for dict_ in data:
@@ -172,8 +169,7 @@ class Api:
 
 class Cocktail:
 
-
-    def __init__(self,cocktail_dict):
+    def __init__(self, cocktail_dict):
         self.id = cocktail_dict["idDrink"]
         self.name = cocktail_dict["strDrink"]
         self.category = cocktail_dict["strCategory"]
@@ -215,7 +211,7 @@ class Cocktail:
 
 class Cocktail_lite:
 
-    def __init__(self,cocktail_dict):
+    def __init__(self, cocktail_dict):
         self.id = cocktail_dict["idDrink"]
         self.name = cocktail_dict["strDrink"]
         self.thumb = cocktail_dict["strDrinkThumb"]

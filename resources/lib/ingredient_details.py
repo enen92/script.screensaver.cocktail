@@ -7,40 +7,36 @@
    See LICENSE for more information.
 '''
 
-import xbmcaddon
 import xbmcgui
-import xbmc
-import os
-from resources.lib.common_cocktail import *
+from resources.lib.common_cocktail import ADDON_PATH, COCKTAIL_API, ACTION_RETURN, ACTION_ESCAPE
 
-#Window controls
-ingredientlabel = 32609
-ingredientthumb = 32610
-ingredientdescription = 32611
+
+# Window controls
+INGREDIENT_LABEL = 32609
+INGREDIENT_THUMB = 32610
+INGREDIENT_DESCRIPTION = 32611
 
 
 class Ingredientdetails(xbmcgui.WindowXMLDialog):
 
-
     def __init__( self, *args, **kwargs ):
-        self.info = eval(args[3])
-        self.ingredient_title = self.info[0]
-        self.ingredient_thumb = self.info[1]
-        self.ingredient_description = self.info[2]
+        self.ingredient_title = kwargs['data']['name']
+        self.ingredient_thumb = kwargs['data']['thumb']
+        self.ingredient_description = kwargs['data']['description']
 
 
     def onInit(self):
-        self.getControl(ingredientlabel).setLabel(self.ingredient_title)
-        self.getControl(ingredientthumb).setImage(self.ingredient_thumb)
-        self.setIngredientDescription()
+        self.getControl(INGREDIENT_LABEL).setLabel(self.ingredient_title)
+        self.getControl(INGREDIENT_THUMB).setImage(self.ingredient_thumb)
+        self._set_ingredient_description()
 
 
-    def setIngredientDescription(self):
-        description = cocktailsdb_api.Search().ingredient(self.ingredient_title)
+    def _set_ingredient_description(self):
+        description = COCKTAIL_API.Search().ingredient(self.ingredient_title)
         if description:
-            self.getControl(ingredientdescription).setText(description)
+            self.getControl(INGREDIENT_DESCRIPTION).setText(description)
         else:
-            self.getControl(ingredientdescription).setText(self.ingredient_description)
+            self.getControl(INGREDIENT_DESCRIPTION).setText(self.ingredient_description)
 
 
     def onAction(self,action):
@@ -48,13 +44,18 @@ class Ingredientdetails(xbmcgui.WindowXMLDialog):
             self.close()
 
 
-def start(name,thumb,description):
-    argm = str([name,thumb,description])
+def start(name, thumb, description):
+    argm = str([name, thumb, description])
     ingrdts = Ingredientdetails(
         'script-cocktail-ingredientdetails.xml',
-        addon_path,
+        ADDON_PATH,
         'default',
-        argm,
+        '',
+        data = {
+            'name': name,
+            'thumb': thumb,
+            'description': description
+        }
     )
     ingrdts.doModal()
     del ingrdts
