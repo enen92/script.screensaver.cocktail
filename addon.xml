@@ -13,6 +13,8 @@
 		<forum>http://forum.kodi.tv/showthread.php?tid=238039</forum>
 		<summary lang="en_GB">Cocktail recipe browser and screensaver for Kodi</summary>
 		<description lang="en_GB">This addon let you browse dozens of cocktail recipes. It also includes a screensaver to display random drinks. [CR][CR]Powered by http://www.thecocktaildb.com</description>
+		<summary lang="pt_PT">Browser de receitas para Cocktails e protetor de ecrã</summary>
+		<description lang="pt_PT">Este addon permite aceder a dezenas de receitas para cocktails. Também inclui um protetor de ecrã que lhe permite vizualizar receitas aleatórias. [CR][CR]Fonte: http://www.thecocktaildb.com</description>
 		<assets>
 		    <icon>icon.png</icon>
 		    <fanart>fanart.jpg</fanart>
