@@ -7,12 +7,12 @@
 	<extension point="xbmc.python.script" library="interface.py" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<license>GPL-2.0-only</license>
 		<website>http://www.thecocktaildb.com/</website>
 		<source>https://github.com/enen92/script.screensaver.cocktail</source>
 		<forum>http://forum.kodi.tv/showthread.php?tid=238039</forum>
-		<summary lang="en">Cocktail recipe browser and screensaver for Kodi</summary>
-		<description lang="en">This addon let you browse dozens of cocktail recipes. It also includes a screensaver to display random drinks. [CR][CR]Powered by http://www.thecocktaildb.com</description>
+		<summary lang="en_GB">Cocktail recipe browser and screensaver for Kodi</summary>
+		<description lang="en_GB">This addon let you browse dozens of cocktail recipes. It also includes a screensaver to display random drinks. [CR][CR]Powered by http://www.thecocktaildb.com</description>
 		<assets>
 		    <icon>icon.png</icon>
 		    <fanart>fanart.jpg</fanart>
